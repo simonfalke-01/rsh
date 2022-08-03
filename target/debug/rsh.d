@@ -1,1 +1,1 @@
-/Users/brandonli/rust-projects/rsh/target/debug/rsh: /Users/brandonli/rust-projects/rsh/src/main.rs
+F:\Projects\Coding\Rust\rsh\target\debug\rsh.exe: F:\Projects\Coding\Rust\rsh\src\main.rs
