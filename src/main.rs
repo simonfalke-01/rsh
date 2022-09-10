@@ -9,7 +9,7 @@ fn main() {
     println!("{}", input.trim());
     if input.trim() == "neofetch"
     {
-        println!("Broe we haven't connected stop tryin to flex");
+        println!("Broe we haven't connected stop tryin to flex on other ppl");
     }
     println!("Dumbass this is not finished");
     
