@@ -6,6 +6,11 @@ fn main() {
     println!("{pi:.5}", pi = pi);
     println!("Pls type smth");
     io::stdin().read_line(&mut input).expect("Broe we have a issue contact local indian tech support");
-    println!("{input}");
+    println!("{}", input.trim());
+    if input.trim() == "neofetch"
+    {
+        println!("Broe we haven't connected stop tryin to flex");
+    }
     println!("Dumbass this is not finished");
+    
 }
