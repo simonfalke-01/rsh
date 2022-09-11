@@ -12,5 +12,4 @@ fn main() {
         println!("Broe we haven't connected stop tryin to flex on other ppl");
     }
     println!("Dumbass this is not finished");
-    
 }
