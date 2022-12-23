@@ -1,15 +1,23 @@
-use std::{io, array};
+use std::io::prelude::*;
+use std::net::{TcpListener, TcpStream};
+use std::fmt;
+
+
+fn handle_client(stream: TcpStream) {
+
+}
 
 fn main() {
-    let pi: f32 = 3.141592;
-    let mut input = String::new();
-    println!("{pi:.5}", pi = pi);
-    println!("Pls type smth");
-    io::stdin().read_line(&mut input).expect("Broe we have a issue contact local indian tech support");
-    println!("{}", input.trim());
-    if input.trim() == "neofetch"
-    {
-        println!("Broe we haven't connected stop tryin to flex on other ppl u script kiddie");
+    let listener = TcpListener::bind(fmt::format("127.0.0.1:{}", 8080)).unwrap();
+
+    for stream in listener.incoming() {
+        match stream {
+            Ok(stream) => {
+                handle_client(stream);
+            }
+            Err(e) => {
+                println!("Error: {}", e);
+            }
+        }
     }
-    println!("Dumbass this is not finished");
 }
