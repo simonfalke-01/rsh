@@ -22,6 +22,7 @@ $ rsh client <address> <port>
 ### - Why is it "rsh"? Shouldn't it be "rrs"?
 A simple diagram for this:
 <br>
+<br>
 <img align="center" src="images/dont_ask.png" width="250" alt="rsh">
 <br>
 Don't ask.
