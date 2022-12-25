@@ -1,4 +1,4 @@
-# <img src=images/rsh_highlight.png width="200">
+# <img src=images/rsh_highlight_interlaced.png width="200">
 ### Rust Reverse Shell
 
 ## What is rsh?
