@@ -4,7 +4,7 @@ use std::net::{TcpListener, TcpStream};
 
 #[derive(Parser)]
 #[command(name = "rsh")]
-#[command(author = "Sherlock Holmes, Simpnfalke")]
+#[command(author = "Sherlock Holmes, Simonfalke")]
 #[command(version = "0.0.1")]
 #[command(about = "A Rust reverse shell", long_about = None)]
 struct Config {
