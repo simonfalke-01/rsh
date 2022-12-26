@@ -6,6 +6,8 @@
 
 - [What is rsh?](#what-is-rsh)
 - [Installation](#installation)
+  - [Commands](#commands)
+  - [Inspection](#inspection)
 - [Usage](#usage)
   - [Server](#server)
   - [Client](#client)
@@ -29,12 +31,14 @@ _Note: Installation instructions do not currently work._
 rsh can be installed on your system by running one of the commands below in your terminal.
 An installation script will be run. You must have git, and either `curl` or `wget` installed.
 
+### Commands
 | Method    | Command                                                                                            |
 | :-------- |:---------------------------------------------------------------------------------------------------|
 | **curl**  | `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/simonfalke-01/rsh/main/install.sh)"` |
 | **wget**  | `/bin/bash -c "$(wget -O- https://raw.githubusercontent.com/simonfalke-01/rsh/main/install.sh)"`   |
 | **fetch** | `/bin/bash -c "$(fetch -o - https://raw.githubusercontent.com/simonfalke-01/rsh/main/install.sh)"` |
 
+### Inspection
 If you would like to inspect the script before running it, you can download the script by running the following command:
 ```bash
 wget https://raw.githubusercontent.com/simonfalke-01/rsh/main/install.sh
@@ -60,8 +64,7 @@ $ rsh client <address> <port>
 ## FAQ
 ### - Why is it "rsh"? Shouldn't it be "rrs"?
 A simple diagram for this:
-<br>
-<br>
+<br><br><br>
 <p align="center">
 <img src="images/dont_ask.png" width="250" alt="rsh">
 </p>
@@ -71,6 +74,6 @@ Don't ask.
 ### - Why Rust? Why not C?
 <img src="images/segfault.png" width="250" alt="Image of C segfaulting">
 
-<br><br><br>
+<br><br><br><br>
 
 michelle please be my girlfriend
