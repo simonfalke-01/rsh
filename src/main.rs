@@ -1,6 +1,5 @@
 use std::io::prelude::*;
 use std::net::{TcpListener, TcpStream};
-use std::env;
 
 use clap::{Parser, Subcommand};
 
@@ -13,6 +12,9 @@ struct Config {
     /// Port to operate on.
     #[arg(short, long, default_value_t = 8080)]
     port: i32,
+    /// IP address to start the server on.
+    #[arg(short, long, default_value_t = String::from("localhost"))]
+    ip: String,
 }
 
 
@@ -36,12 +38,13 @@ fn receive(stream: &mut TcpStream) -> String {
         stream.read(&mut buffer).unwrap();
         let converted = String::from_utf8_lossy(&buffer).to_string();
 
-        if converted == "MESSAGEDONE" {
+        if converted.trim() == "MESSAGEDONE" {
             break;
         }
 
         println!("pushed");
-        data.push_str(&converted);
+        data.push_str(&converted.trim());
+        println!("{}", data);
     }
 
     data
@@ -54,10 +57,10 @@ fn handle_client(mut stream: TcpStream) {
         send_message(&mut stream, &command);
         loop {
             let data = receive(&mut stream);
-            if data == "END" {
+            if data.trim() == "END" {
                 break;
             }
-            println!("{}", data);
+            println!("Data received: {}", data);
         }
     }
 }
@@ -65,7 +68,7 @@ fn handle_client(mut stream: TcpStream) {
 
 fn main() {
     let conf: Config = Config::parse();
-    let listener = TcpListener::bind(format!("127.0.0.1:{}", conf.port.to_string())).unwrap();
+    let listener = TcpListener::bind(format!("{}:{}", conf.ip, conf.port.to_string())).unwrap();
     println!("Listening at 127.0.0.1 on port {}", conf.port);
     for stream in listener.incoming() {
         match stream {
