@@ -1,14 +1,17 @@
 use std::io::prelude::*;
 use std::net::{TcpListener, TcpStream};
-use std::env;
 use clap::Parser;
 
 
 // get a port arg from the command line
 #[derive(Parser)]
+#[command(name = "rsh")]
+#[command(author = "Sherlock Holmes, Simonfalke")]
+#[command(version = "0.0.1")]
+#[command(about = "A Rust reverse shell", long_about = None)]
 struct Config {
-		#[arg(short, long, default_value = "8080")]
-		port: u16,
+		#[arg(long, default_value = "8080")]
+		port: i32,
 }
 
 fn args() -> Config {
