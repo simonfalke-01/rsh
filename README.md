@@ -15,7 +15,7 @@
     - [Client](#client)
   - [FAQ](#faq)
     - [- Why is it "rsh"? Shouldn't it be "rrs"?](#--why-is-it-rsh-shouldnt-it-be-rrs)
-    - [- Why Rust? Why not \[insert lang\]?](#--why-rust-why-not-insert-lang)
+    - [- Why Rust? Why not C/C++?](#--why-rust-why-not-cc)
 
 </details>
 
@@ -73,7 +73,7 @@ A simple diagram for this:
 <br>
 Don't ask.
 
-### - Why Rust? Why not [insert lang]?
+### - Why Rust? Why not C/C++?
 <img src="images/c_segfault.png" width="" alt="Image of C segfaulting">
 
 <br><br><br><br>
