@@ -11,7 +11,7 @@ use clap::{Parser, Subcommand};
 #[command(about = "A Rust reverse shell", long_about = None)]
 struct Config {
     /// Port to operate on.
-    #[arg(long, default_value_t = 8080)]
+    #[arg(short, long, default_value_t = 8080)]
     port: i32,
 }
 
