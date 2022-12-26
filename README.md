@@ -4,16 +4,18 @@
 <details>
 <summary>Contents</summary>
 
-- [What is rsh?](#what-is-rsh)
-- [Installation](#installation)
-  - [Commands](#commands)
-  - [Inspection](#inspection)
-- [Usage](#usage)
-  - [Server](#server)
-  - [Client](#client)
-- [FAQ](#faq)
-  - [About Naming](#--why-is-it--rsh---shouldnt-it-be--rrs--)
-  - [Choice of Language](#--why-rust-why-not-c)
+- [](#)
+    - [Rust Reverse Shell](#rust-reverse-shell)
+  - [What is rsh?](#what-is-rsh)
+  - [Installation](#installation)
+    - [Commands](#commands)
+    - [Inspection](#inspection)
+  - [Usage](#usage)
+    - [Server](#server)
+    - [Client](#client)
+  - [FAQ](#faq)
+    - [- Why is it "rsh"? Shouldn't it be "rrs"?](#--why-is-it-rsh-shouldnt-it-be-rrs)
+    - [- Why Rust? Why not C/C++?](#--why-rust-why-not-cc)
 
 </details>
 
@@ -54,11 +56,11 @@ The server script should be run first, which sets up a listener (default on port
 Run the following commands on the respective systems. Substitute `<address>` and `<port>` for the address and port that you would like to bind/connect to.
 ### Server
 ```bash
-$ rsh server <address> <port>
+$ rsh server <address> -p <port>
 ```
 ### Client
 ```bash
-$ rsh client <address> <port>
+$ rsh client <address> -p <port>
 ```
 
 ## FAQ
@@ -71,8 +73,8 @@ A simple diagram for this:
 <br>
 Don't ask.
 
-### - Why Rust? Why not C?
-<img src="images/segfault.png" width="250" alt="Image of C segfaulting">
+### - Why Rust? Why not C/C++?
+<img src="images/c_segfault.png" width="" alt="Image of C segfaulting">
 
 <br><br><br><br>
 

