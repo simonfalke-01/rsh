@@ -74,7 +74,7 @@ A simple diagram for this:
 Don't ask.
 
 ### - Why Rust? Why not [insert lang]?
-<img src="images/c_segfault.png" width="250" alt="Image of C segfaulting">
+<img src="images/c_segfault.png" width="" alt="Image of C segfaulting">
 
 <br><br><br><br>
 
