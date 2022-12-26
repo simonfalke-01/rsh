@@ -1,17 +1,18 @@
 use std::io::prelude::*;
 use std::net::{TcpListener, TcpStream};
 use std::env;
+use clap::Parser;
 
+
+// get a port arg from the command line
+#[derive(Parser)]
 struct Config {
-    port: i32,
+		#[arg(short, long, default_value = "8080")]
+		port: u16,
 }
 
 fn args() -> Config {
-    let args: Vec<String> = env::args().collect();
-    let conf = Config {
-        port: args.get(1).expect("no port specified").parse().unwrap(),
-    };
-    conf
+		Config::parse()
 }
 
 fn send_message(stream: &mut TcpStream, message: &String) {
