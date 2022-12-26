@@ -22,6 +22,7 @@ fn send_message(stream: &mut TcpStream, message: &String) {
 	stream.flush().unwrap();
 }
 
+
 fn get_command() -> String {
 	let mut input = String::new();
 	std::io::stdin().read_line(&mut input).unwrap();
