@@ -44,7 +44,6 @@ fn receive(stream: &mut TcpStream) -> String {
 
         println!("pushed");
         data.push_str(&converted.trim());
-        println!("{}", data);
     }
 
     data
@@ -60,7 +59,7 @@ fn handle_client(mut stream: TcpStream) {
             if data.trim() == "END" {
                 break;
             }
-            println!("Data received: {}", data);
+            println!("{}", data);
         }
     }
 }
