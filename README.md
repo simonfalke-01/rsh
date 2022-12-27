@@ -56,11 +56,11 @@ The server script should be run first, which sets up a listener (default on port
 Run the following commands on the respective systems. Substitute `<address>` and `<port>` for the address and port that you would like to bind/connect to.
 ### Server
 ```sh
-rsh -i <address> -p <port>
+rsh server -i <address> -p <port>
 ```
 ### Client
 ```sh
-rshc -i <address> -p <port>
+rsh client -i <address> -p <port>
 ```
 
 ## FAQ

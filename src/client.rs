@@ -1,25 +1,14 @@
 use std::io::{Read, Write};
 use std::net::TcpStream;
 use std::process::{Command, Stdio};
-use clap::Parser;
 
-// TODO: Sent output back to the server
-
-#[derive(Parser)]
-#[command(name = "rshc")]
-struct Config {
-	/// Port to operate on.
-	#[arg(short, long, default_value_t = 8080)]
-	port: i32,
-	/// IP address to start the server on.
-	#[arg(short, long, default_value_t = String::from("localhost"))]
-	ip: String,
+pub struct Config {
+	pub ip: String,
+	pub port: u32,
 }
 
-
-fn main() {
+pub fn client(config: Config) {
 	// Connect to the remote host and get a TcpStream
-	let config = Config::parse();
 	let mut stream = TcpStream::connect(format!("{}:{}", config.ip, config.port)).unwrap();
 
 	// Set up a pipe to read from stdin and write to the TcpStream
