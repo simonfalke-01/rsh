@@ -55,16 +55,9 @@ fn handle_client(mut stream: TcpStream) {
 	loop {
 		let command = get_command();
 		send_message(&mut stream, &command);
-		loop {
-			let mut data = receive(&mut stream);
-			data = data.replace("\0", "");
-
-			if data.contains("END") {
-				println!("{}", "Ending!".red());
-				break;
-			}
-			println!("{}", data);
-		}
+		let mut data = receive(&mut stream);
+		data = data.replace("\0", "");
+		println!("{}", data);
 	}
 }
 
