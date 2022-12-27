@@ -8,11 +8,13 @@ use std::net::{TcpListener, TcpStream};
 #[command(version = "0.0.1")]
 #[command(about = "A Rust reverse shell", long_about = None)]
 struct Config {
+    ///Select the mode to operate on: client or server.
+    mode: String,
 	/// Port to operate on.
-	#[arg(short, long, default_value_t = 8080)]
+	#[arg(default_value_t = 8080)]
 	port: i32,
 	/// IP address to start the server on.
-	#[arg(short, long, default_value_t = String::from("localhost"))]
+	#[arg(default_value_t = String::from("localhost"))]
 	ip: String,
 }
 
