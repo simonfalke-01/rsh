@@ -59,8 +59,9 @@ fn main() {
 		// Write to the TcpStream
 		stdout.write_all(&buffer[..n]).unwrap();
 		stream.write_all(&buffer[..n]).unwrap();
+		stream.write_all(b"\n").unwrap();
 		stream.write_all(b"MESSAGEDONE\n").unwrap();
-		stream.write_all(b"END\n").unwrap();
+		// stream.write_all(b"END\n").unwrap();
 		stdout.flush().unwrap();
 	}
 }

