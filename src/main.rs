@@ -36,8 +36,9 @@ fn receive(stream: &mut TcpStream) -> String {
 		let mut converted = String::from_utf8_lossy(&buffer).to_string();
 		converted = converted.replace("\0", "");
 
-
-		if converted == "MESSAGEDONE".to_string() {
+		// assert_eq!(converted, "MESSAGEDONE\n".to_string());
+		// hotfix...?
+		if converted.contains("MESSAGEDONE") {
 			println!("Breaking!");
 			break;
 		}
