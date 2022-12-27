@@ -33,9 +33,9 @@ fn receive(stream: &mut TcpStream) -> String {
 	loop {
 		let mut buffer = [0; 512];
 		stream.read(&mut buffer).unwrap();
-		let converted = String::from_utf8_lossy(&buffer).to_string();
-
-		if converted[0..11] == "MESSAGEDONE".to_string() {
+		let mut  converted = String::from_utf8_lossy(&buffer).to_string();
+        converted = converted.replace("\0", "");
+		if converted == "MESSAGEDONE\n".to_string() {
             println!("Breaking!");
 			break;
 		}
@@ -52,7 +52,8 @@ fn handle_client(mut stream: TcpStream) {
 		let command = get_command();
 		send_message(&mut stream, &command);
 		loop {
-			let data = receive(&mut stream);
+			let mut data = receive(&mut stream);
+            data = data.replace("\0", "");
 			if data.trim() == "END" {
 				break;
 			}
