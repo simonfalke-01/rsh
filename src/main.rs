@@ -54,7 +54,7 @@ fn handle_client(mut stream: TcpStream) {
 		loop {
 			let mut data = receive(&mut stream);
             data = data.replace("\0", "");
-			if data.trim() == "END" {
+			if data == "END" {
 				break;
 			}
 			println!("{}", data);
