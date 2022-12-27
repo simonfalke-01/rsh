@@ -26,7 +26,7 @@ It is a Work In Progress, and not ready for use yet.
 <br><br>
 In a reverse shell, the server listens for connections, and the client connects to it.
 The client is the one that executes the commands and sends it back to the server.
-
+This project is licensed under the [GPL-3](https://github.com/simonfalke-01/rsh/blob/main/LICENSE) License.
 ## Installation
 _Note: Installation instructions do not currently work._
 <br>
