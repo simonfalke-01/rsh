@@ -1,4 +1,4 @@
-use clap::{Parser};
+use clap::Parser;
 use std::io::prelude::*;
 use std::net::{TcpListener, TcpStream};
 
@@ -33,10 +33,10 @@ fn receive(stream: &mut TcpStream) -> String {
 	loop {
 		let mut buffer = [0; 512];
 		stream.read(&mut buffer).unwrap();
-		let mut  converted = String::from_utf8_lossy(&buffer).to_string();
-        converted = converted.replace("\0", "");
+		let mut converted = String::from_utf8_lossy(&buffer).to_string();
+		converted = converted.replace("\0", "");
 		if converted == "MESSAGEDONE\n".to_string() {
-            println!("Breaking!");
+			println!("Breaking!");
 			break;
 		}
 
@@ -53,7 +53,8 @@ fn handle_client(mut stream: TcpStream) {
 		send_message(&mut stream, &command);
 		loop {
 			let mut data = receive(&mut stream);
-            data = data.replace("\0", "");
+			data = data.replace("\0", "");
+
 			if data == "END" {
 				break;
 			}
