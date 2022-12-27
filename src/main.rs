@@ -31,22 +31,15 @@ fn get_command() -> String {
 
 fn receive(stream: &mut TcpStream) -> String {
 	let mut data = String::new();
-	loop {
-		let mut buffer = [0; 512];
-		stream.read(&mut buffer).unwrap();
-		let mut converted = String::from_utf8_lossy(&buffer).to_string();
-		converted = converted.replace("\0", "");
 
-		// assert_eq!(converted, "MESSAGEDONE\n".to_string());
-		// hotfix...?
-		if converted.contains("MESSAGEDONE") {
-			println!("{}", "Breaking!".red());
-			break;
-		}
+	let mut buffer = [0; 512];
+	stream.read(&mut buffer).unwrap();
+	let mut converted = String::from_utf8_lossy(&buffer).to_string();
+	converted = converted.replace("\0", "");
 
-		println!("{}", "pushed".green());
-		data.push_str(&converted.trim());
-	}
+
+	// println!("{}", "pushed".green());
+	data.push_str(&converted.trim());
 
 	data
 }
