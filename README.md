@@ -4,19 +4,17 @@
 <details>
 <summary>Contents</summary>
 
-- [](#)
-    - [Rust Reverse Shell](#rust-reverse-shell)
-  - [What is rsh?](#what-is-rsh)
-  - [Installation](#installation)
-    - [Commands](#commands)
-    - [Inspection](#inspection)
-  - [Usage](#usage)
-    - [Server](#server)
-    - [Client](#client)
-  - [Contributing](#contributing)
-  - [FAQ](#faq)
-    - [- Why is it "rsh"? Shouldn't it be "rrs"?](#--why-is-it-rsh-shouldnt-it-be-rrs)
-    - [- Why Rust? Why not C/C++?](#--why-rust-why-not-cc)
+- [What is rsh?](#what-is-rsh)
+- [Installation](#installation)
+  - [Commands](#commands)
+  - [Inspection](#inspection)
+- [Usage](#usage)
+  - [Server](#server)
+  - [Client](#client)
+- [Contributing](#contributing)
+- [FAQ](#faq)
+  - [- Why is it "rsh"? Shouldn't it be "rrs"?](#--why-is-it-rsh-shouldnt-it-be-rrs)
+  - [- Why Rust? Why not C/C++?](#--why-rust-why-not-cc)
 
 </details>
 
@@ -28,6 +26,7 @@ It is a Work In Progress, and not ready for use yet.
 In a reverse shell, the server listens for connections, and the client connects to it.
 The client is the one that executes the commands and sends it back to the server.
 This project is licensed under the [GPL-3](https://github.com/simonfalke-01/rsh/blob/main/LICENSE) License.
+
 ## Installation
 _Note: Installation instructions do not currently work._
 <br>
@@ -64,9 +63,9 @@ rsh <address> <port>
 rshc <address> <port>
 ```
 
-
 ## Contributing
 Please read the [Contributing Guidelines](https://github.com/simonfalke-01/rsh/blob/main/CONTRIBUTING.md) for more info.
+
 ## FAQ
 ### - Why is it "rsh"? Shouldn't it be "rrs"?
 A simple diagram for this:
