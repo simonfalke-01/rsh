@@ -13,6 +13,7 @@
   - [Usage](#usage)
     - [Server](#server)
     - [Client](#client)
+  - [Contributing](#contributing)
   - [FAQ](#faq)
     - [- Why is it "rsh"? Shouldn't it be "rrs"?](#--why-is-it-rsh-shouldnt-it-be-rrs)
     - [- Why Rust? Why not C/C++?](#--why-rust-why-not-cc)
@@ -63,6 +64,9 @@ rsh <address> <port>
 rshc <address> <port>
 ```
 
+
+## Contributing
+Please read the [Contributing Guidelines](https://github.com/simonfalke-01/rsh/blob/main/CONTRIBUTING.md) for more info.
 ## FAQ
 ### - Why is it "rsh"? Shouldn't it be "rrs"?
 A simple diagram for this:
