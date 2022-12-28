@@ -19,20 +19,22 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 pub mod server_func {
-use std::io::prelude::*;
+	use std::io::prelude::*;
 	use std::net::{TcpListener, TcpStream};
+	use crate::Config;
 
-use crate::Config;
 	pub fn send_message(stream: &mut TcpStream, message: &String) {
 		stream.write(message.as_bytes()).unwrap();
 		stream.flush().unwrap();
 	}
+
 	pub fn get_command() -> String {
 		let mut input = String::new();
 		std::io::stdin().read_line(&mut input).unwrap();
 
 		input
 	}
+
 	pub fn receive(stream: &mut TcpStream) -> String {
 		let mut data = String::new();
 		loop {
@@ -49,6 +51,7 @@ use crate::Config;
 
 		data
 	}
+
 	pub fn handle_client(mut stream: TcpStream) {
 		loop {
 			let command = get_command();
@@ -63,6 +66,7 @@ use crate::Config;
 			}
 		}
 	}
+
 	pub fn server_main(conf: Config) {
 		let listener = TcpListener::bind(format!("{}:{}", conf.ip, conf.port.to_string())).unwrap();
 		println!("Listening at 127.0.0.1 on port {}", conf.port);

@@ -22,8 +22,8 @@ pub mod client_func {
    use std::io::{Read, Write};
    use std::net::TcpStream;
    use std::process::{Command, Stdio};
+   use crate::Config;
 
-use crate::Config;
    pub fn client_main(conf: Config) {
       // Connect to the remote host and get a TcpStream
       let mut stream = TcpStream::connect(format!("{}:{}", conf.ip, conf.port)).unwrap();

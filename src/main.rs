@@ -25,9 +25,10 @@ pub mod server;
 
 #[derive(Parser)]
 #[command(name = "rsh")]
-#[command(author = "Sherlock Holmes, Simonfalke")]
+#[command(author = "simonfalke, Sherlock Holmes, Admiral Canaris")]
 #[command(version = "0.0.1")]
 #[command(about = "A Rust reverse shell", long_about = None)]
+
 pub struct Config {
 	///Select the mode to operate on: client or server.
 	mode: String,
