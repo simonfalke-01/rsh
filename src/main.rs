@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-#[macro_use] extern crate duct;
+extern crate duct;
 
 use clap::Parser;
 
@@ -48,11 +48,11 @@ fn main() {
 	match conf.mode.as_str() {
 		"server" => {
 			server::server::main(conf);
-		},
+		}
 
 		"client" => {
 			client::client::main(conf);
-		},
+		}
 
 		other => {
 			println!("{} is not a valid mode.", other);

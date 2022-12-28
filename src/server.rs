@@ -19,9 +19,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 pub mod server {
+	use crate::Config;
 	use std::io::prelude::*;
 	use std::net::{TcpListener, TcpStream};
-	use crate::Config;
 
 	fn send_message(stream: &mut TcpStream, message: &String) {
 		stream.write(message.as_bytes()).unwrap();
@@ -92,7 +92,7 @@ pub mod server {
 			match stream {
 				Ok(stream) => {
 					handle_client(stream);
-				},
+				}
 
 				Err(e) => {
 					println!("Error: {}", e);
