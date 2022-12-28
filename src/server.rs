@@ -56,14 +56,9 @@ pub mod server_func {
 		loop {
 			let command = get_command();
 			send_message(&mut stream, &command);
-			loop {
-				let mut data = receive(&mut stream);
-				data = data.replace("\0", "");
-				if data == "END" {
-					break;
-				}
-				println!("Data received: {}", data);
-			}
+			let mut data = receive(&mut stream);
+			data = data.replace("\0", "");
+			println!("Data received: {}", data);
 		}
 	}
 
