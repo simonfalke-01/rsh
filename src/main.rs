@@ -18,6 +18,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
+#[macro_use] extern crate duct;
+
 use clap::Parser;
 
 pub mod client;
@@ -42,15 +44,18 @@ pub struct Config {
 
 fn main() {
 	let conf: Config = Config::parse();
+
 	match conf.mode.as_str() {
 		"server" => {
-			server::server_func::server_main(conf);
+			server::server::main(conf);
 		},
+
 		"client" => {
-			client::client_func::client_main(conf);
+			client::client::main(conf);
 		},
-		err => {
-			println!("{} is not a valid mode.", err);
+
+		other => {
+			println!("{} is not a valid mode.", other);
 		}
 	}
 }
