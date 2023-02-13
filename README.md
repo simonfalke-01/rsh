@@ -4,17 +4,19 @@
 <details>
 <summary>Contents</summary>
 
-- [What is rsh?](#what-is-rsh)
-- [Installation](#installation)
-  - [Commands](#commands)
-  - [Inspection](#inspection)
-- [Usage](#usage)
-  - [Server](#server)
-  - [Client](#client)
-- [Contributing](#contributing)
-- [FAQ](#faq)
-  - [- Why is it "rsh"? Shouldn't it be "rrs"?](#--why-is-it-rsh-shouldnt-it-be-rrs)
-  - [- Why Rust? Why not C/C++?](#--why-rust-why-not-cc)
+- [](#)
+    - [Rust Reverse Shell](#rust-reverse-shell)
+  - [What is rsh?](#what-is-rsh)
+  - [Installation](#installation)
+    - [Commands](#commands)
+    - [Inspection](#inspection)
+  - [Usage](#usage)
+    - [Server](#server)
+    - [Client](#client)
+  - [Contributing](#contributing)
+  - [FAQ](#faq)
+    - [- Why is it "rsh"? Shouldn't it be "rrs"?](#--why-is-it-rsh-shouldnt-it-be-rrs)
+    - [- Why Rust? Why not C/C++?](#--why-rust-why-not-cc)
 
 </details>
 
@@ -56,11 +58,11 @@ The server script should be run first, which sets up a listener (default on port
 Run the following commands on the respective systems. Substitute `<address>` and `<port>` for the address and port that you would like to bind/connect to.
 ### Server
 ```sh
-rsh <address> <port>
+rsh server <address> <port>
 ```
 ### Client
 ```sh
-rshc <address> <port>
+rshc client <address> <port>
 ```
 
 ## Contributing
