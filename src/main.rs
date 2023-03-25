@@ -18,44 +18,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-extern crate duct;
+use std::env;
 
-use clap::Parser;
-
-pub mod client;
-pub mod server;
-
-#[derive(Parser)]
-#[command(name = "rsh")]
-#[command(author = "simonfalke, Sherlock Holmes, Admiral Canaris")]
-#[command(version = "0.0.1")]
-#[command(about = "A Rust reverse shell", long_about = None)]
-
-pub struct Config {
-	///Select the mode to operate on: client or server.
-	mode: String,
-	/// IP address to start the server on.
-	#[arg(default_value_t = String::from("localhost"))]
-	ip: String,
-	/// Port to operate on.
-	#[arg(default_value_t = 8080)]
-	port: i32,
-}
+use rsh::client::run_client;
+use rsh::server::run_server;
 
 fn main() {
-	let conf: Config = Config::parse();
+	let args: Vec<String> = env::args().collect();
 
-	match conf.mode.as_str() {
-		"server" => {
-			server::server::main(conf);
-		}
+	if args.len() < 2 {
+		println!("Usage: rsh [server | client]");
+		return;
+	}
 
-		"client" => {
-			client::client::main(conf);
-		}
+	let command = args[1].clone();
 
-		other => {
-			println!("{} is not a valid mode.", other);
-		}
+	match command.as_str() {
+		"server" => server::run_server(),
+		"client" => client::run_client(),
+		_ => println!("Invalid command. Usage: rsh [server | client]"),
 	}
 }

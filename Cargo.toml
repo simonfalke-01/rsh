@@ -4,6 +4,15 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-clap = { version = "4.0.32", features = ["derive"] }
-colored = "2.0.0"
-duct = "0.13.6"
+tokio = { version = "1", features = ["full"] }
+tokio-tungstenite = "0.15.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[lib]
+name = "rsh"
+path = "src/rsh/mod.rs"
+
+[[bin]]
+name = "rsh"
+path = "src/main.rs"
